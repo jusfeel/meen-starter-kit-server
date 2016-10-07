@@ -1,0 +1,28 @@
+{
+  "name": "np-mean-server",
+  "version": "1.0.0",
+  "description": "Mean Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hao Wang",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.2.0",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-watch": "^4.3.10",
+    "jshint": "^2.9.3"
+  }
+}

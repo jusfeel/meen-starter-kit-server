@@ -10,6 +10,17 @@
     res.render('index');
   });
  
+  router.get('/' + nameSpace + '/' + collName + '/:_id', function(req, res) {
+    db[collName].find({
+      _id: mongojs.ObjectId(req.params._id)
+    }, '', function(err, data) {
+			var _obj = {};
+			_obj[modelName] = data;
+      res.json(_obj);
+    });
+ 
+  });
+
   router.get('/' + nameSpace + '/' + collName, function(req, res) {
     db[collName].find(function(err, data) {
 			var _obj = {};
@@ -28,18 +39,25 @@
  
   });
  
-  router.patch('/' + nameSpace + '/' + collName, function(req, res) {
+  router.patch('/' + nameSpace + '/' + collName + '/:_id', function(req, res) {
 
-		var _id = req.body[modelName]._id;
+		if(req.params._id != req.body[modelName]._id) {
+		  res.status(400);
+      res.json({
+        "error": "Invalid Data"
+      });
+		}
+
     var _obj = req.body[modelName]; 
 		delete _obj._id;
 
     db[collName].update({
-      _id: mongojs.ObjectId(_id)
+      _id: mongojs.ObjectId(req.params._id)
     }, _obj, {}, function(err, data) {
-			var _obj = {};
-			_obj[modelName] = data;
-      res.json(_obj);
+			var _obj2 = {};
+			_obj._id = req.params._id;
+			_obj2[modelName] = _obj;
+      res.json(_obj2);
     });
  
   });
@@ -48,9 +66,7 @@
     db[collName].remove({
       _id: mongojs.ObjectId(req.params._id)
     }, '', function(err, data) {
-			var _obj = {};
-			_obj[modelName] = data;
-      res.json(_obj);
+      res.json({});
     });
  
   });

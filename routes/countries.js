@@ -1,7 +1,7 @@
   var express = require('express');
   var router = express.Router();
   var mongojs = require('mongojs');
-	var collection = 'entries';
+	var collection = 'countries';
   var db = mongojs('npcp', [collection]);
  
   router.get('/', function(req, res) {

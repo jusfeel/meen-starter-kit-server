@@ -4,8 +4,11 @@
   var logger = require('morgan');
   var cookieParser = require('cookie-parser');
   var bodyParser = require('body-parser');
+
+	var nameSpace = '/api/v1/';
  
-  var routes = require('./routes/index');
+  var index = require('./routes/index');
+  var countries = require('./routes/countries');
  
   var app = express();
  
@@ -20,7 +23,8 @@
  
   app.use(cors());	
 
-  app.use('/', routes);
+  app.use(nameSpace, index);
+  app.use(nameSpace, countries);
  
   app.set('port', process.env.PORT || 3000);
  

@@ -9,6 +9,7 @@
  
   var index = require('./routes/index');
   var countries = require('./routes/countries');
+  var systems = require('./routes/systems');
  
   var app = express();
  
@@ -25,6 +26,7 @@
 
   app.use(nameSpace, index);
   app.use(nameSpace, countries);
+  app.use(nameSpace, systems);
  
   app.set('port', process.env.PORT || 3000);
  
